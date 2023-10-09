@@ -2,20 +2,25 @@
 #include <stdio.h>
 
 int main(void) {
-    int x = 24;
+    // int x = 24;
 
     // while (x < 42) {
     //     printf("%d\n", x);
     //     x += 3;
     // }
 
-    while_condition:
-    if (x >= 42) goto end;
-    printf("%d\n", x);
-    x += 3;
-    goto while_condition:
+    int x = 24;
 
-    end:
+loop:
+    if (x >= 42) goto loop_end;
+    
+    printf("%d\n", x);
+    x = x + 3;
+
+    goto loop;
+
+loop_end:
+
 
     return 0;
 }

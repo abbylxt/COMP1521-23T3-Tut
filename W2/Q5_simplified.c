@@ -6,24 +6,23 @@
 #define SQUARE_MAX 46340
 
 int main(void) {
-    int x, y;
-
     printf("Enter a number: ");
+
+    int x, y;
     scanf("%d", &x);
 
-    if (x <= SQUARE_MAX) goto else1;
+    if_condi:
+    if (x <= SQUARE_MAX) goto else_square;
+
     printf("square too big for 32 bits\n");
 
-    goto end;
-    else1:
+    goto else_end;
+
+    else_square:
     y = x * x;
+    printf("%d\n", y);
 
-    // printing int
-    printf("%d", y);
-    // printing character
-    printf("\n", y);
-
-    end: 
+    else_end:
 
     return 0;
 }

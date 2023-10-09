@@ -3,18 +3,15 @@
 #include <stdio.h>
 
 int main(void) {
-    int x;
-    int y;
-
     printf("Enter a number: ");
+
+    int x;
     scanf("%d", &x);
 
-    y = x * x;
+    int y = x * x;
 
-    // printing int
     printf("%d", y);
-    // printing character
-    printf("\n", y);
+    printf("\n");
 
     return 0;
 }

@@ -5,39 +5,42 @@
 SQUARE_MAX = 46340
 
 main:
-# $t0 = x, $t1 = y
+	li	$v0, 4
+	la	$a0, prompt_str
+	syscall
 
-li	$v0, 4			# printf("Enter a number: ");
-la	$a0, prompt_str
-syscall
+	li	$v0, 5
+	syscall
+	move	$t0, $v0		# $t0 = x
 
-li	$v0, 5			# scanf("%d", &x);
-syscall
-move	$t0, $v0
+if_condi:
+	ble	$t0, SQUARE_MAX, else_square
 
-if: 
-ble	$t0, SQUARE_MAX, else1  #  if (x <= SQUARE_MAX) goto else1;
+	li	$v0, 4
+	la	$a0, too_big_str
+	syscall
 
-li	$v0, 4			# printf("square too big for 32 bits\n");
-la	$a0, too_big_str
-syscall
+	b	else_end
 
-b       end
+else_square:
+	mul	$t1, $t0, $t0
 
-else1:
-mul	$t1, $t0, $t0		# y = x * x
+	li	$v0, 1
+	move	$a0, $t1
+	syscall
 
-li	$v0, 1			# printf("%d", y);
-move	$a0, $t1
-syscall
+	li	$v0, 11
+	li	$a0, '\n'
+	syscall
 
-li	$v0, 11			# printf("\n", y);
-li	$a0, '\n'
-syscall
 
-end:
-li	$v0, 1
-jr	$ra			 # return 0;
+
+else_end:
+
+	li	$v0, 0
+	jr	$ra
+
+main_end:
 
 
 .data
